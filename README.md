@@ -59,3 +59,4 @@ file_put_contents('./data/snmp_data.json', json_encode(array('nodes' => $nodes,
 * CDP integration
 * Autorefresh map
 * Save maps
+* Icinga plugin
