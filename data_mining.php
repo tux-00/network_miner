@@ -15,12 +15,12 @@ snmp_set_quick_print(TRUE);
  * @return 	table 	CDP/EDP response or FALSE if error
  */
 function get_snmp_table($switch) {
-	$OID_NeighborName = "1.3.6.1.4.1.1916.1.13.2.1.3";
+	$OID_NeighborName = '1.3.6.1.4.1.1916.1.13.2.1.3';
 	
-	$result = snmp2_walk($switch, "public", $OID_NeighborName);
+	$result = snmp2_walk($switch, 'public', $OID_NeighborName);
 	
 	if ($result != FALSE) {
-		$result = str_replace("\"", "", $result);
+		$result = str_replace('\"', '', $result);
 		$result = array_unique($result, SORT_STRING);
 		$result = array_values(array_filter($result));
 		return $result;
@@ -73,7 +73,7 @@ function get_switch_links($base_switch) {
 		// If $base_switch not in $nodes (first run of get_switch_links())
 		if(strstr(json_encode($nodes), $base_switch) == FALSE) {
 			array_push($nodes, array('name'  => $base_switch, 
-									 'group' => $group));
+						 'group' => $group));
 		}
 		
 		// If switch is already present, delete it to avoid duplicate entry
@@ -84,21 +84,21 @@ function get_switch_links($base_switch) {
 			
 			if($switch_node_id != FALSE && $base_switch_node_id != FALSE) {
 				array_push($links, array('source' => $switch_node_id, 
-									 	 'target' => $base_switch_node_id));
+							 'target' => $base_switch_node_id));
 			}
 		} else {
 			// Add switches linked to $base_switch in $nodes
 			array_push($nodes, array('name'   => $switch, 
-									 'group'  => $group));
+						 'group'  => $group));
 			array_push($links, array('source' => get_switch_node_id($switch), 
-									 'target' => get_switch_node_id($base_switch)));
+						 'target' => get_switch_node_id($base_switch)));
 		}
 	}
 	
 	// Add $base_switch + links + group to $switches
-	array_push($switches, array("group"  => $group, 
-								"parent" => $base_switch, 
-								"links"  => $snmp_response));
+	array_push($switches, array('group'  => $group, 
+				    'parent' => $base_switch, 
+				    'links'  => $snmp_response));
 	
 	if(strstr(json_encode($nodes), $base_switch) != FALSE) $group++;
 }
@@ -128,9 +128,9 @@ function recursive_search($base_switch, $level = 2) {
 recursive_search('eswctb08ma', 1);
 
 file_put_contents('./data/snmp_data.json', json_encode(array('nodes' => $nodes, 
-												        	 'links' => $links)),
-												        	 LOCK_EX);
+							     'links' => $links)),
+							     LOCK_EX);
 
-print '<div class="alert alert-info" role="alert"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> '
-		. count($nodes) . ' nodes | ' . count($links) . ' links</div>';
-
+print '<div class="alert alert-info" role="alert">
+	<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> '
+	. count($nodes) . ' nodes | ' . count($links) . ' links</div>';
