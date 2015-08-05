@@ -31,7 +31,7 @@ Four files are important.
 
 # How to use
 * EDP/CDP need to be enabled on your SNMP devices.
-* Edit [data_mining.php](data_mining.php) and set an hostname and dig level at this line:  `recursive_search('eswctb08ma', 9);`
+* Edit [data_mining.php](data_mining.php) and set an hostname (or ip address) and the dig level at this line:  `recursive_search('eswctb08ma', 9);`
 * Run index.php on your web browser.
 
 # Test files
