@@ -6,4 +6,4 @@ composer.phar
 vendor/
 
 # Prevent commits of generated data
-data/snmp_data.json
+data/
