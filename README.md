@@ -2,6 +2,7 @@
 Network Miner digs your network by sending SNMP requests (EDP/CDP) and generates a network map.
 
 ## Table of contents:
+- [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Files](#files)
 - [How to use](#how-to-use)
@@ -9,6 +10,19 @@ Network Miner digs your network by sending SNMP requests (EDP/CDP) and generates
 - [Screenshots](#screenshots)
 - [Technical details](#technical-details)
 - [Roadmap](#roadmap)
+
+# Installation
+Clone this repository :
+
+`git clone https://github.com/tux-00/network_miner.git`
+
+Download dependencies :
+
+`cd network_miner`
+
+`bower install`
+
+Check [bower.io](http://bower.io/) website for more information.
 
 # Dependencies
 The following libs are needed to run Network Miner.
@@ -19,15 +33,15 @@ The following libs are needed to run Network Miner.
 * [Bootstrap3](http://getbootstrap.com/)
 * [typeahead.js](https://github.com/twitter/typeahead.js/)
 
-At this moment all libs are included into the repository. ([js](js/) and [bootstrap](bootstrap/) dirs)
+Use `bower install` to install dependencies.
 
 # Files
 Four files are important.
 
-* [index.php](index.php): base page that will be filled by [functions.js](js/functions.js) with Ajax
+* [index.php](index.php): base page that will be filled by [functions.js](functions.js) with Ajax
 * [data_mining.php](data_mining.php): functions to get data from SNMP devices with CDP/EDP enabled
-* [functions.js](js/functions.js): get events and display the network map
-* [custom.css](bootstrap/css/custom.css): custom css for bootstrap, typeahead and D3.js
+* [functions.js](functions.js): get events and display the network map
+* [custom.css](custom.css): custom css for bootstrap, typeahead and D3.js
 
 # How to use
 * EDP/CDP need to be enabled on your SNMP devices.
