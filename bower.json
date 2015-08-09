@@ -1,0 +1,10 @@
+{
+    "name": "network_miner",
+    "dependencies": {
+        "bootstrap": "latest",
+        "d3": "latest",
+        "jquery": "latest",
+        "jqueryui": "latest",
+        "typeahead.js": "latest"
+    }
+}
