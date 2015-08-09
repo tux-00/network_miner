@@ -3,13 +3,17 @@ var svg;
 // Nodes list
 var nodes = [];
 
+$(document).ready(function() {
+    $("#search_btn").prop('disabled', true);
+});
+
 $('#discover_btn').click(function() {
     discover();
 });
 
 $('#search_btn').click(function() {
 	var to_search = document.getElementById('search_input').value;
-	
+
 	// If the node is found
 	if($.inArray(to_search, nodes) != -1) {
 		display_node(to_search);

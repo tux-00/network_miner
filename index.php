@@ -31,7 +31,7 @@
                                     <input type="text" class="form-control" id="search_input" autocomplete="off" placeholder="Node search...">
                                 </div>
                                 <span class="input-group-btn">
-										<button class="btn btn-default" type="button" id="search_btn" disabled>Go!</button>
+										<button class="btn btn-default" type="button" id="search_btn">Go!</button>
 									</span>
                             </div>
                         </form>
