@@ -3,21 +3,21 @@
 $nodes = array();
 $links = array();
 $group = 0;
-$switches = array();
+$devices = array();
 
 snmp_set_quick_print(TRUE);
 
 
 /**
- * Return the CDP/EDP table of $switch
+ * Return the CDP/EDP table of $device
  *
- * @param 	string	$switch 	Switch name to be requested
+ * @param 	string	$device 	Device name to request
  * @return 	table|bool 	SNMP response, FALSE if error
  */
-function get_snmp_table($switch) {
+function get_snmp_table($device) {
 	$OID_NeighborName = '1.3.6.1.4.1.1916.1.13.2.1.3';
 
-	$result = snmp2_walk($switch, 'public', $OID_NeighborName);
+	$result = snmp2_walk($device, 'public', $OID_NeighborName);
 
 	if ($result != FALSE) {
 		$result = str_replace('\"', '', $result);
@@ -31,16 +31,16 @@ function get_snmp_table($switch) {
 
 
 /**
- * Return the node ID (json data) of $switch
+ * Return the node ID (json data) of $device
  *
- * @param 	string	$switch 	Switch name
- * @return 	int|bool 	Node ID of $switch, FALSE if not found
+ * @param 	string	$device 	Device name
+ * @return 	int|bool 	Node ID of $device, FALSE if not found
  */
-function get_switch_node_id($switch) {
+function get_device_id($device) {
 	global $nodes;
 
-	foreach($nodes as $key => $node_switch) {
-		if($node_switch['name'] == $switch) {
+	foreach($nodes as $key => $node) {
+		if($node['name'] == $device) {
 			return $key;
 		}
 	}
@@ -49,58 +49,58 @@ function get_switch_node_id($switch) {
 
 
 /**
- * Store informations from $base_switch in global variables
+ * Store informations from $base_device in global variables
  *
- * @param 	string	$base_switch 	Switch name of the base switch
+ * @param 	string	$base_device 	Device name for base search
  * @return 	bool 	Returns TRUE if informations was written, FALSE otherwise
  */
-function get_switch_links($base_switch) {
-	global $switches;
+function get_device_links($base_device) {
+	global $devices;
 	global $nodes;
 	global $group;
 	global $links;
 
-	$base_switch_node_id = get_switch_node_id($base_switch);
+	$base_device_id = get_device_id($base_device);
 
-	// Get switches connected to $base_switch
-	$snmp_response = get_snmp_table($base_switch);
+	// Get devices connected to $base_device
+	$snmp_response = get_snmp_table($base_device);
 
 	if($snmp_response == FALSE) {
 		return FALSE;
 	}
 
-	foreach($snmp_response as $key => $switch) {
-		// If $base_switch not in $nodes (first run of get_switch_links())
-		if(strstr(json_encode($nodes), $base_switch) == FALSE) {
-			array_push($nodes, array('name'  => $base_switch,
+	foreach($snmp_response as $key => $device) {
+		// If $base_device not in $nodes (first run of get_device_links()), add it
+		if(strstr(json_encode($nodes), $base_device) == FALSE) {
+			array_push($nodes, array('name'  => $base_device,
 						 'group' => $group));
 		}
 
-		// If switch is already present, delete it to avoid duplicate entry
-		if(strstr(json_encode($nodes), $switch) != FALSE) {
+		// If $device is already present, delete it to avoid duplicate entry
+		if(strstr(json_encode($nodes), $device) != FALSE) {
 			unset($snmp_response[$key]);
 
-			$switch_node_id = get_switch_node_id($switch);
+			$device_id = get_device_id($device);
 
-			if($switch_node_id != FALSE && $base_switch_node_id != FALSE) {
-				array_push($links, array('source' => $switch_node_id,
-							 'target' => $base_switch_node_id));
+			if($device_id != FALSE && $base_device_id != FALSE) {
+				array_push($links, array('source' => $device_id,
+							 'target' => $base_device_id));
 			}
 		} else {
-			// Add switches linked to $base_switch in $nodes
-			array_push($nodes, array('name'   => $switch,
+			// Add devices linked to $base_device in $nodes
+			array_push($nodes, array('name'   => $device,
 						 'group'  => $group));
-			array_push($links, array('source' => get_switch_node_id($switch),
-						 'target' => get_switch_node_id($base_switch)));
+			array_push($links, array('source' => get_device_id($device),
+						 'target' => get_device_id($base_device)));
 		}
 	}
 
-	// Add $base_switch + links + group to $switches
-	array_push($switches, array('group'  => $group,
-				    'parent' => $base_switch,
+	// Add $base_device + links + group to $devices
+	array_push($devices, array('group'  => $group,
+				    'parent' => $base_device,
 				    'links'  => $snmp_response));
 
-	if(strstr(json_encode($nodes), $base_switch) != FALSE) $group++;
+	if(strstr(json_encode($nodes), $base_device) != FALSE) $group++;
 
 	return TRUE;
 }
@@ -109,22 +109,22 @@ function get_switch_links($base_switch) {
 /**
  * Request all links found in CDP/EDP response
  *
- * @param 	string	$base_switch 	Switch name of the base switch
+ * @param 	string	$base_device 	Device name for base search
  * @param 	int 	$level 	Dig level of CDP/EDP requests
- * @return 	bool 	Returns TRUE if links of $base_switch has been returned, FALSE otherwise
+ * @return 	bool 	Returns TRUE if links of $base_device has been returned, FALSE otherwise
  */
-function recursive_search($base_switch, $level = 2) {
-	global $switches;
+function recursive_search($base_device, $level = 2) {
+	global $devices;
 
-	// Fill the $switches global variable
-	if(get_switch_links($base_switch) == FALSE) {
+	// Fill the $devices global variable
+	if(get_device_links($base_device) == FALSE) {
 		return FALSE;
 	}
 
 	$i = 0;
 	do {
-		foreach($switches[$i]['links'] as $sw) {
-			get_switch_links($sw);
+		foreach($devices[$i]['links'] as $sw) {
+			get_device_links($sw);
 		}
 		$i++;
 	} while($i < $level);
