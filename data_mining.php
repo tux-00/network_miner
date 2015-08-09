@@ -114,7 +114,10 @@ function get_switch_links($base_switch) {
 function recursive_search($base_switch, $level = 2) {
 	global $switches;
 
-	get_switch_links($base_switch);
+	// Fill the $switches global variable
+	if(get_switch_links($base_switch) == FALSE) {
+		return FALSE;
+	}
 
 	$i = 0;
 	do {
