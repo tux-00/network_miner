@@ -1,5 +1,5 @@
 # Network Miner
-Network Miner generates a network map by sending SNMP requests (EDP/CDP).
+Network Miner generates a network map by sending SNMP requests (CDP/EDP).
 
 ![D3.js display](http://i.imgur.com/eMewdyu.png)
 
@@ -23,7 +23,7 @@ Download dependencies :
 
 `bower install`
 
-Check [bower.io](http://bower.io/) website for more information.
+Check [bower.io](http://bower.io/) website for more informations about Bower.
 
 # Dependencies
 The following libs are needed to run Network Miner.
