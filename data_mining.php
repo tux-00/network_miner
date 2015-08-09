@@ -1,8 +1,14 @@
 <?php
 
+// Array of device names and groups (informations will be inserted into the JSON
+// file to create the map)
 $nodes = array();
+// Links between devices (informations will be inserted into the JSON file to
+// create the map)
 $links = array();
+// Will be inserted into the $nodes and $devices global arrays
 $group = 0;
+// Array contening device names with her group, parent and links
 $devices = array();
 
 snmp_set_quick_print(TRUE);
