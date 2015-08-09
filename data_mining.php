@@ -169,4 +169,8 @@ file_put_contents('./data/snmp_data.json', json_encode(array('nodes' => $nodes,
 							     'links' => $links)),
 							     LOCK_EX);
 
-display_alert('info', count($nodes) . ' nodes | ' . count($links) . ' links');
+if(count($nodes) > 0) {
+	display_alert('info', count($nodes) . ' devices | ' . count($links) . ' links');
+} else {
+	display_alert('info', 'No devices found. Check if your devices are up, if SNMP is enabled, if CDP or EDP is present and if it is correctly configured.');
+}
