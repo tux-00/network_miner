@@ -4,8 +4,8 @@
 <head>
     <title>Network Miner</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css">
-    <link rel="stylesheet" href="bootstrap/css/custom.css" type="text/css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="custom.css" type="text/css">
     <link rel="icon" href="img/favicon.ico">
 </head>
 
@@ -43,13 +43,13 @@
 
     </div>
 
-    <script type="text/javascript" src="./js/d3js/d3.min.js"></script>
-    <script type="text/javascript" src="./js/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="./js/jquery-ui-1.11.4/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="./js/jquery-ui-1.11.4/themes/smoothness/jquery-ui.css"></script>
-    <script type="text/javascript" src="./bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="./js/typeahead.js/typeahead.bundle.min.js"></script>
-    <script type="text/javascript" src="./js/functions.js"></script>
+    <script type="text/javascript" src="bower_components/d3/d3.min.js"></script>
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/jqueryui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="bower_components/jqueryui/themes/smoothness/jquery-ui.min.css"></script>
+    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="bower_components/typeahead.js/dist/typeahead.bundle.min.js"></script>
+    <script type="text/javascript" src="./functions.js"></script>
 
 </body>
 
