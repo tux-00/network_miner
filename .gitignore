@@ -1,9 +1,8 @@
 # Temp files
 *~
 
-# Composer
-composer.phar
-vendor/
+# Bower
+bower_components/
 
 # Prevent commits of generated data
 data/
