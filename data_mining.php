@@ -128,15 +128,41 @@ function recursive_search($base_switch, $level = 2) {
 	} while($i < $level);
 }
 
+
+/**
+ * Request all links found in CDP/EDP response
+ *
+ * @param 	string	$type 	Type of alert (success, info, warning, danger)
+ * @param 	string 	$content 	Content of the alert
+ * @return 	bool 	Returns TRUE if alert is print, FALSE otherwise
+ */
+function display_alert($type, $content) {
+	$types = array(
+		'success'	=> 'glyphicon-ok-sign',
+		'info'		=> 'glyphicon-info-sign',
+		'warning'	=> 'glyphicon-warning-sign',
+		'danger' 	=> 'glyphicon-exclamation-sign'
+	);
+
+	if(!array_key_exists($type, $types)) {
+		return FALSE;
+	}
+
+	print '<div class="alert alert-' . $type . ' alert-dismissible" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<span class="glyphicon ' . $types[$type] . '" aria-hidden="true"></span> '
+		. $content . '</div>';
+
+	return TRUE;
+}
+
+
 recursive_search('eswctb08ma', 1);
 
 file_put_contents('./data/snmp_data.json', json_encode(array('nodes' => $nodes,
 							     'links' => $links)),
 							     LOCK_EX);
 
-print '<div class="alert alert-info alert-dismissible" role="alert">
-	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-		<span aria-hidden="true">&times;</span>
-	</button>
-	<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> '
-	. count($nodes) . ' nodes | ' . count($links) . ' links</div>';
+display_alert('info', count($nodes) . ' nodes | ' . count($links) . ' links');
