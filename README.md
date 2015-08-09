@@ -1,13 +1,14 @@
 # Network Miner
 Network Miner digs your network by sending SNMP requests (EDP/CDP) and generates a network map.
 
+![D3.js display](http://i.imgur.com/eMewdyu.png)
+
 ## Table of contents:
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Files](#files)
 - [How to use](#how-to-use)
 - [Test files](#test-files)
-- [Screenshots](#screenshots)
 - [Technical details](#technical-details)
 - [Roadmap](#roadmap)
 
@@ -59,8 +60,6 @@ file_put_contents('./data/snmp_data.json', json_encode(array('nodes' => $nodes,
 												        	 'links' => $links)),
 												        	 LOCK_EX);
 ```
-# Screenshots
-![D3.js display](http://i.imgur.com/eMewdyu.png)
 
 # Technical details
 [Cisco Discovery Protocol (CDP)](https://en.wikipedia.org/wiki/Cisco_Discovery_Protocol):
