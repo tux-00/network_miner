@@ -1,5 +1,5 @@
 # Network Miner
-Network Miner digs your network by sending SNMP requests (EDP/CDP) and generates a network map.
+Network Miner generates a network map by sending SNMP requests (EDP/CDP).
 
 ![D3.js display](http://i.imgur.com/eMewdyu.png)
 
