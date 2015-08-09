@@ -12,7 +12,7 @@ snmp_set_quick_print(TRUE);
  * Return the CDP/EDP table of $switch
  *
  * @param 	string	$switch 	Switch name to be requested
- * @return 	table 	CDP/EDP response or FALSE if error
+ * @return 	table|bool 	SNMP response, FALSE if error
  */
 function get_snmp_table($switch) {
 	$OID_NeighborName = '1.3.6.1.4.1.1916.1.13.2.1.3';
@@ -34,7 +34,7 @@ function get_snmp_table($switch) {
  * Return the node ID (json data) of $switch
  *
  * @param 	string	$switch 	Switch name
- * @return 	int 	Node ID of $switch
+ * @return 	int|bool 	Node ID of $switch, FALSE if not found
  */
 function get_switch_node_id($switch) {
 	global $nodes;
@@ -52,7 +52,7 @@ function get_switch_node_id($switch) {
  * Store informations from $base_switch in global variables
  *
  * @param 	string	$base_switch 	Switch name of the base switch
- * @return 	None
+ * @return 	bool 	Returns TRUE if informations was written, FALSE otherwise
  */
 function get_switch_links($base_switch) {
 	global $switches;
@@ -101,6 +101,8 @@ function get_switch_links($base_switch) {
 				    'links'  => $snmp_response));
 
 	if(strstr(json_encode($nodes), $base_switch) != FALSE) $group++;
+
+	return TRUE;
 }
 
 
@@ -109,7 +111,7 @@ function get_switch_links($base_switch) {
  *
  * @param 	string	$base_switch 	Switch name of the base switch
  * @param 	int 	$level 	Dig level of CDP/EDP requests
- * @return 	None
+ * @return 	bool 	Returns TRUE if links of $base_switch has been returned, FALSE otherwise
  */
 function recursive_search($base_switch, $level = 2) {
 	global $switches;
@@ -126,6 +128,8 @@ function recursive_search($base_switch, $level = 2) {
 		}
 		$i++;
 	} while($i < $level);
+
+	return TRUE;
 }
 
 
