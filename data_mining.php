@@ -26,7 +26,7 @@ function get_snmp_table($device) {
 	$result = snmp2_walk($device, 'public', $OID_NeighborName);
 
 	if ($result != FALSE) {
-		$result = str_replace('\"', '', $result);
+		$result = str_replace('"', '', $result);
 		$result = array_unique($result, SORT_STRING);
 		$result = array_values(array_filter($result));
 		return $result;
