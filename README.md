@@ -61,6 +61,12 @@ file_put_contents('./data/snmp_data.json', json_encode(array('nodes' => $nodes,
  LOCK_EX);
 ```
 
+**JSON data faker**
+
+If you want to submit data for testing purpose you can use the [json_data_faker.py](test/data/json_data_faker.py) Python 2.7 script to fake every device names in your JSON file.
+
+To use this script you need to install *faker* module with `pip install fake-factory`.
+
 # Technical details
 [Cisco Discovery Protocol (CDP)](https://en.wikipedia.org/wiki/Cisco_Discovery_Protocol):
 > The Cisco Discovery Protocol (CDP) is a proprietary Data Link Layer protocol developed by Cisco Systems. It is used to share information about other directly connected Cisco equipment, such as the operating system version and IP address.
