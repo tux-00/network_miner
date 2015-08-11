@@ -68,6 +68,32 @@ file_put_contents('./data/snmp_data.json', json_encode(array('nodes' => $nodes,
 [Extreme Discovery Protocol (EDP)](https://wiki.wireshark.org/EDP):
 >EDP is a vendor proprietary protocol from Extreme Networks. It is used to send information like system MAC, device name or VLAN information to neighboring Extreme devices.
 
+JSON data structure:
+```
+{
+    "nodes":[
+        {
+            "name":"eswctb08ma",
+            "group":0
+        },
+        {
+            "name":"eswctb09ma",
+            "group":0
+        }
+    ],
+    "links":[
+        {
+            "source":1,
+            "target":0
+        },
+        {
+            "source":2,
+            "target":0
+        }
+    ]
+}
+```
+
 # Roadmap
 * CDP integration
 * Autorefresh map
