@@ -52,13 +52,13 @@ Four files are important.
 # Test files
 You can test Network Miner without the appropriate environment.
 
-To test Network Miner, you need first to copy json data file [test/data/snmp_data.json](test/data/snmp_data.json) to your *data* dir.
+To test Network Miner, you need first to copy the content of a json example data file (located in [test/data/](test/data/)) to your *data* directory.
 
 Once the file is copied you need to comment this line to avoid overwrite on *snmp_data.json*: 
 ```
 file_put_contents('./data/snmp_data.json', json_encode(array('nodes' => $nodes, 
-												        	 'links' => $links)),
-												        	 LOCK_EX);
+ 'links' => $links)),
+ LOCK_EX);
 ```
 
 # Technical details
