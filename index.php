@@ -28,11 +28,11 @@
                             </button>
                             <div class="input-group pull-right">
                                 <div class="scrollable-dropdown-menu">
-                                    <input type="text" class="form-control" id="search_input" autocomplete="off" placeholder="Node search...">
+                                    <input type="text" class="form-control" id="search_input" autocomplete="off" placeholder="Device search...">
                                 </div>
                                 <span class="input-group-btn">
-										<button class="btn btn-default" type="button" id="search_btn">Go!</button>
-									</span>
+									<button class="btn btn-default" type="button" id="search_btn">Go!</button>
+								</span>
                             </div>
                         </form>
                     </fieldset>
