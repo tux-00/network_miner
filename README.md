@@ -79,11 +79,11 @@ JSON data structure:
 {
     "nodes":[
         {
-            "name":"eswctb08ma",
+            "name":"eswexample",
             "group":0
         },
         {
-            "name":"eswctb09ma",
+            "name":"eswtest",
             "group":0
         }
     ],
