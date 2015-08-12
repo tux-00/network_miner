@@ -12,12 +12,7 @@ $('#discover_btn').click(function() {
 });
 
 $('#search_btn').click(function() {
-	var to_search = document.getElementById('search_input').value;
-
-	// If the node is found
-	if($.inArray(to_search, nodes) != -1) {
-		display_node(to_search);
-	}
+	display_node(document.getElementById('search_input').value);
 });
 
 // Run algorythm to discover nodes/links and create map
@@ -181,6 +176,10 @@ function rendering() {
 
 // Display the node 'node_mame'
 function display_node(node_name) {
+    if($.inArray(node_name, nodes) == -1) {
+        return false;
+    }
+
     var node = svg.selectAll(".node");
 
     if (node_name == "none") {
