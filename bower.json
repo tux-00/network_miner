@@ -2,6 +2,7 @@
     "name": "network_miner",
     "dependencies": {
         "bootstrap": "latest",
+	    "bootstrap-select": "latest",
         "d3": "latest",
         "jquery": "latest",
         "jqueryui": "latest",
