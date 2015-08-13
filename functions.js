@@ -15,6 +15,8 @@ $('#search_btn').click(function() {
 	display_node(document.getElementById('search_input').value);
 });
 
+$('.selectpicker').selectpicker();
+
 // Run algorythm to discover nodes/links and create map
 function discover() {
     jQuery.ajax({
@@ -24,11 +26,15 @@ function discover() {
             $("svg").remove();
             $("#discover_btn").button('loading');
             $("#discover_btn").prop('disabled', true);
+            $("#select_proto").prop('disabled', true);
+            $("#select_proto").selectpicker('refresh');
             $("#search_btn").prop('disabled', true);
         },
         success: function(data, textStatus, jqXHR) {
             $("#notif").html(data);
             $("#discover_btn").button('reset');
+            $("#select_proto").prop('disabled', false);
+            $("#select_proto").selectpicker('refresh');
             $("#search_btn").prop('disabled', false);
             rendering();
         },

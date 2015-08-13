@@ -5,6 +5,7 @@
     <title>Network Miner</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="bower_components/bootstrap-select/dist/css/bootstrap-select.min.css" type="text/css">
     <link rel="stylesheet" href="css/custom.css" type="text/css">
     <link rel="icon" href="img/favicon.ico">
 </head>
@@ -26,6 +27,12 @@
                             <button type="button" id="discover_btn" class="btn btn-primary pull-left" data-loading-text="Discover in progress...">
                                 <span class="glyphicon glyphicon-eye-open"></span> Discover
                             </button>
+                            <select id="select_proto" class="selectpicker show-tick col-lg-1">
+                                <option>Auto</option>
+                                <option>LLDP</option>
+                                <option>CDP</option>
+                                <option>EDP</option>
+                            </select>
                             <div class="input-group pull-right">
                                 <div class="scrollable-dropdown-menu">
                                     <input type="text" class="form-control" id="search_input" autocomplete="off" placeholder="Device search...">
@@ -48,6 +55,7 @@
     <script type="text/javascript" src="bower_components/jqueryui/jquery-ui.min.js"></script>
     <script type="text/javascript" src="bower_components/jqueryui/themes/smoothness/jquery-ui.min.css"></script>
     <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
     <script type="text/javascript" src="bower_components/typeahead.js/dist/typeahead.bundle.min.js"></script>
     <script type="text/javascript" src="functions.js"></script>
 
