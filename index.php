@@ -5,7 +5,7 @@
     <title>Network Miner</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="custom.css" type="text/css">
+    <link rel="stylesheet" href="css/custom.css" type="text/css">
     <link rel="icon" href="img/favicon.ico">
 </head>
 
@@ -49,7 +49,7 @@
     <script type="text/javascript" src="bower_components/jqueryui/themes/smoothness/jquery-ui.min.css"></script>
     <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="bower_components/typeahead.js/dist/typeahead.bundle.min.js"></script>
-    <script type="text/javascript" src="./functions.js"></script>
+    <script type="text/javascript" src="functions.js"></script>
 
 </body>
 
