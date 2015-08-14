@@ -20,7 +20,11 @@ $('.selectpicker').selectpicker();
 // Run algorythm to discover nodes/links and create map
 function discover() {
     jQuery.ajax({
+        type: 'POST',
         url: 'data_mining.php',
+        data: {
+            selected_proto: $("#select_proto option:selected").text()
+        },
         beforeSend: function(jqXHR, settings) {
             $("#notif").html("");
             $("svg").remove();

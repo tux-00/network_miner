@@ -10,8 +10,54 @@ $links = array();
 $group = 0;
 // Array contening device names with her group, parent and links
 $devices = array();
+// Correct OID to use
+$OID_SELECTED = 0;
+// First device to scan
+$FIRST_DEVICE = 'test';
 
 snmp_set_quick_print(TRUE);
+
+$OIDS = array(
+	"LLDP" => "iso.0.8802.1.1.2.1.4.1.1.9",
+	"CDP" => "1.3.6.1.4.1.9.9.23.1.2.1.1.6",
+	"EDP" => "1.3.6.1.4.1.1916.1.13.2.1.3"
+);
+
+
+/**
+ * Select the correct OID from the select list
+ *
+ * @return 	string|bool 	Associated OID, FALSE if error
+ */
+function get_oid() {
+	global $OIDS;
+	global $FIRST_DEVICE;
+
+	if ($_POST['selected_proto'] != 'Auto') {
+		foreach ($OIDS as $name => $oid) {
+			if ($name == $_POST['selected_proto']) {
+				if (snmp2_walk($FIRST_DEVICE, 'public', $oid) != FALSE) {
+					return $oid;
+				} else {
+					display_alert('danger', error_get_last()['message'] . '.');
+					return FALSE;
+				}
+
+			}
+		}
+	}
+	if ($_POST['selected_proto'] == 'Auto') {
+		foreach ($OIDS as $name => $oid) {
+			$result = @snmp2_walk($FIRST_DEVICE, 'public', $oid);
+			if ($result != FALSE) {
+				return $oid;
+			}
+		}
+	}
+
+	display_alert('danger', error_get_last()['message'] . '.');
+	return FALSE;
+}
 
 
 /**
@@ -21,9 +67,9 @@ snmp_set_quick_print(TRUE);
  * @return 	table|bool 	SNMP response, FALSE if error
  */
 function get_snmp_table($device) {
-	$OID_NeighborName = '1.3.6.1.4.1.1916.1.13.2.1.3';
+	global $OID_SELECTED;
 
-	$result = snmp2_walk($device, 'public', $OID_NeighborName);
+	$result = snmp2_walk($device, 'public', $OID_SELECTED);
 
 	if ($result != FALSE) {
 		$result = str_replace('"', '', $result);
@@ -169,14 +215,20 @@ function display_alert($type, $content) {
 }
 
 
-recursive_search('eswctb08ma', 1);
+// Get the correct OID to send SNMP request
+$OID_SELECTED = get_oid();
+if ($OID_SELECTED == FALSE) {
+	exit(-1);
+}
+
+recursive_search($FIRST_DEVICE, 1);
 
 file_put_contents('./data/snmp_data.json', json_encode(array('nodes' => $nodes,
 							     'links' => $links)),
 							     LOCK_EX);
 
 if(count($nodes) > 0) {
-	display_alert('info', count($nodes) . ' devices | ' . count($links) . ' links');
+	display_alert('info', 'Protocol : ' . array_search($OID_SELECTED, $OIDS, TRUE) . ' | ' . count($nodes) . ' devices | ' . count($links) . ' links');
 } else {
 	display_alert('info', 'No device found. Check if your devices are up, if SNMP is enabled, if LLDP, CDP or EDP are enabled and if the configuration is correct.');
 }
