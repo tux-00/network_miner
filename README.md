@@ -101,7 +101,6 @@ JSON data structure:
 ```
 
 # Roadmap
-* CDP integration
-* Autorefresh map
-* Save maps
+* Autorefresh map data
+* Save maps as PDF, PNG ...
 * Icinga plugin
