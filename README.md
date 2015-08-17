@@ -48,6 +48,7 @@ If you want to submit data for testing purpose you can use the [json_data_faker.
 To use this script you need to install *faker* module with `pip install fake-factory`.
 
 # Roadmap
+* Get SNMP informations from a specific device
 * Autorefresh map data
 * Save maps as PDF, PNG ...
 * Icinga plugin
