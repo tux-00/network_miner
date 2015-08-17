@@ -25,7 +25,13 @@ Network Miner generates a network map by sending SNMP requests (LLDP/CDP/EDP).
 
 Check [bower.io](http://bower.io/) website for more informations about Bower.
 
-* Edit [data_mining.php](data_mining.php) and set the first hostname (or ip address) to scan at this line: `$FIRST_DEVICE = 'test';` and the dig level at this line (second parameter): `recursive_search($FIRST_DEVICE, 1);`
+* Edit [data_mining.php](data_mining.php) and set the first hostname (or ip address) to scan at this line:
+
+`$FIRST_DEVICE = 'test';`
+
+and the dig level at this line (second parameter):
+
+`recursive_search($FIRST_DEVICE, 1);`
 
 * Run index.php in your web browser.
 
@@ -48,6 +54,9 @@ file_put_contents('./data/snmp_data.json', json_encode(array('nodes' => $nodes,
 If you want to submit data for testing purpose you can use the [json_data_faker.py](test/data/json_data_faker.py) Python 2.7 script to fake every device names in your JSON file.
 
 To use this script you need to install *faker* module with `pip install fake-factory`.
+
+Just put the script at your json files location and execute it: `python json_data_faker.py`
+The script will scan the current folder, find the json files and replace device names.
 
 # Roadmap
 * Get SNMP informations from a specific device
