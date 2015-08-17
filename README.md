@@ -55,7 +55,8 @@ If you want to submit data for testing purpose you can use the [json_data_faker.
 
 To use this script you need to install *faker* module with `pip install fake-factory`.
 
-Just put the script at your json files location and execute it: `python json_data_faker.py`
+Just put the script at your json files location and execute it: `python json_data_faker.py`.
+
 The script will scan the current folder, find the json files and replace device names.
 
 # Roadmap
