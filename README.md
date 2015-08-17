@@ -5,17 +5,19 @@ Network Miner generates a network map by sending SNMP requests (LLDP/CDP/EDP).
 
 ## Table of contents:
 - [Installation](#installation)
-- [How to use](#how-to-use)
 - [Test files](#test-files)
 - [Roadmap](#roadmap)
 - [Wiki](#wiki)
 
 # Installation
-Clone this repository :
+* LLDP, EDP or CDP need to be enabled on your SNMP devices.
+* You need a web server with the php snmp plugin/package enabled.
+
+* Clone this repository into your sites location (e.g. /var/www/) :
 
 `git clone https://github.com/tux-00/network_miner.git`
 
-Download dependencies :
+* Download dependencies :
 
 `cd network_miner`
 
@@ -23,9 +25,8 @@ Download dependencies :
 
 Check [bower.io](http://bower.io/) website for more informations about Bower.
 
-# How to use
-* LLDP, EDP or CDP need to be enabled on your SNMP devices.
-* Edit [data_mining.php](data_mining.php) and set an hostname (or ip address) and the dig level at this line:  `recursive_search('eswctb08ma', 9);`
+* Edit [data_mining.php](data_mining.php) and set the first hostname (or ip address) to scan at this line: `$FIRST_DEVICE = 'test';` and the dig level at this line (second parameter): `recursive_search($FIRST_DEVICE, 1);`
+
 * Run index.php on your web browser.
 
 # Test files
