@@ -27,7 +27,7 @@ Check [bower.io](http://bower.io/) website for more informations about Bower.
 
 * Edit [data_mining.php](data_mining.php) and set the first hostname (or ip address) to scan at this line: `$FIRST_DEVICE = 'test';` and the dig level at this line (second parameter): `recursive_search($FIRST_DEVICE, 1);`
 
-* Run index.php on your web browser.
+* Run index.php in your web browser.
 
 # Test files
 You can test Network Miner without the appropriate environment.
