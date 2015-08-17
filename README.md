@@ -1,13 +1,14 @@
 # Network Miner
 Network Miner generates a network map by sending SNMP requests (LLDP/CDP/EDP).
 
-![D3.js display](http://i.imgur.com/kFvCZty.png)
+![D3.js display](http://i.imgur.com/RkQj2EF.png)
 
 ## Table of contents:
 - [Installation](#installation)
 - [How to use](#how-to-use)
 - [Test files](#test-files)
 - [Roadmap](#roadmap)
+- [Wiki](#wiki)
 
 # Installation
 Clone this repository :
@@ -23,7 +24,7 @@ Download dependencies :
 Check [bower.io](http://bower.io/) website for more informations about Bower.
 
 # How to use
-* EDP/CDP need to be enabled on your SNMP devices.
+* LLDP, EDP or CDP need to be enabled on your SNMP devices.
 * Edit [data_mining.php](data_mining.php) and set an hostname (or ip address) and the dig level at this line:  `recursive_search('eswctb08ma', 9);`
 * Run index.php on your web browser.
 
@@ -49,3 +50,6 @@ To use this script you need to install *faker* module with `pip install fake-fac
 * Autorefresh map data
 * Save maps as PDF, PNG ...
 * Icinga plugin
+
+# Wiki
+For more information, see the [Wiki](https://github.com/tux-00/network_miner/wiki) section.
