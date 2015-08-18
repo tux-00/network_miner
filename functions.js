@@ -17,6 +17,8 @@ $('#search_btn').click(function() {
 
 $('.selectpicker').selectpicker();
 
+$('#community_input').popover();
+
 // Run algorythm to discover nodes/links and create map
 function discover() {
     jQuery.ajax({

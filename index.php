@@ -33,6 +33,8 @@
                                 <option>CDP</option>
                                 <option>EDP</option>
                             </select>
+                            <input type="text" class="form-control" id="ip_input" placeholder="First IP/hostname...">
+                            <input type="text" class="form-control" id="community_input" placeholder="Community..." data-toggle="popover" data-trigger="hover" data-content="Default: public">
                             <div class="input-group pull-right">
                                 <div class="scrollable-dropdown-menu">
                                     <input type="text" class="form-control" id="search_input" autocomplete="off" placeholder="Device search...">
