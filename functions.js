@@ -18,6 +18,7 @@ $('#search_btn').click(function() {
 $('.selectpicker').selectpicker();
 
 $('#community_input').popover();
+$('#dig_level_input').popover();
 
 // Run algorythm to discover nodes/links and create map
 function discover() {
@@ -27,7 +28,8 @@ function discover() {
         data: {
             selected_proto: $("#select_proto option:selected").text(),
             ip_input: $("#ip_input").val(),
-            community_input: $("#community_input").val()
+            community_input: $("#community_input").val(),
+            dig_level_input: $("#dig_level_input").val()
         },
         beforeSend: function(jqXHR, settings) {
             $("#notif").html("");

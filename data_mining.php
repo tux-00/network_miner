@@ -224,7 +224,11 @@ if ($OID_SELECTED == FALSE) {
 	exit(-1);
 }
 
-recursive_search($_POST['ip_input'], 1);
+$DIG_LEVEL = 1;
+if ($_POST['dig_level_input'] != '') {
+	$DIG_LEVEL = $_POST['dig_level_input'];
+}
+recursive_search($_POST['ip_input'], $DIG_LEVEL);
 
 file_put_contents('./data/snmp_data.json', json_encode(array('nodes' => $nodes,
 							     'links' => $links)),

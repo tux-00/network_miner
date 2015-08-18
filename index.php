@@ -35,6 +35,7 @@
                             </select>
                             <input type="text" class="form-control" id="ip_input" placeholder="First IP/hostname...">
                             <input type="text" class="form-control" id="community_input" placeholder="Community..." data-toggle="popover" data-trigger="hover" data-content="Default: public">
+                            <input type="text" class="form-control" id="dig_level_input" placeholder="Dig level..." data-toggle="popover" data-trigger="hover" data-content="Default: 1">
                             <div class="input-group pull-right">
                                 <div class="scrollable-dropdown-menu">
                                     <input type="text" class="form-control" id="search_input" autocomplete="off" placeholder="Device search...">
