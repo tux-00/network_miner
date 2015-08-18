@@ -12,8 +12,6 @@ $group = 0;
 $devices = array();
 // Correct OID to use
 $OID_SELECTED = 0;
-// First device to scan
-$FIRST_DEVICE = 'test';
 
 snmp_set_quick_print(TRUE);
 
@@ -31,12 +29,17 @@ $OIDS = array(
  */
 function get_oid() {
 	global $OIDS;
-	global $FIRST_DEVICE;
+
+	if ($_POST['community_input'] == '') {
+		$COMMUNITY = 'public';
+	} else {
+		$COMMUNITY = $_POST['community_input'];
+	}
 
 	if ($_POST['selected_proto'] != 'Auto') {
 		foreach ($OIDS as $name => $oid) {
 			if ($name == $_POST['selected_proto']) {
-				if (snmp2_walk($FIRST_DEVICE, 'public', $oid) != FALSE) {
+				if (snmp2_walk($_POST['ip_input'], $COMMUNITY, $oid) != FALSE) {
 					return $oid;
 				} else {
 					display_alert('danger', error_get_last()['message'] . '.');
@@ -48,7 +51,7 @@ function get_oid() {
 	}
 	if ($_POST['selected_proto'] == 'Auto') {
 		foreach ($OIDS as $name => $oid) {
-			$result = @snmp2_walk($FIRST_DEVICE, 'public', $oid);
+			$result = @snmp2_walk($_POST['ip_input'], 'public', $oid);
 			if ($result != FALSE) {
 				return $oid;
 			}
@@ -221,7 +224,7 @@ if ($OID_SELECTED == FALSE) {
 	exit(-1);
 }
 
-recursive_search($FIRST_DEVICE, 1);
+recursive_search($_POST['ip_input'], 1);
 
 file_put_contents('./data/snmp_data.json', json_encode(array('nodes' => $nodes,
 							     'links' => $links)),

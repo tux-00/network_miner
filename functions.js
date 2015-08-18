@@ -25,7 +25,9 @@ function discover() {
         type: 'POST',
         url: 'data_mining.php',
         data: {
-            selected_proto: $("#select_proto option:selected").text()
+            selected_proto: $("#select_proto option:selected").text(),
+            ip_input: $("#ip_input").val(),
+            community_input: $("#community_input").val()
         },
         beforeSend: function(jqXHR, settings) {
             $("#notif").html("");
