@@ -8,7 +8,12 @@ $(document).ready(function() {
 });
 
 $('#discover_btn').click(function() {
-    discover();
+    if ($("#ip_input").val() == '') {
+        $('#ip_input').popover('show');
+    } else {
+        $('#ip_input').popover('hide');
+        discover();
+    }
 });
 
 $('#search_btn').click(function() {
@@ -17,29 +22,30 @@ $('#search_btn').click(function() {
 
 $('.selectpicker').selectpicker();
 
+$('#community_input').popover();
+$('#dig_level_input').popover();
+
 // Run algorythm to discover nodes/links and create map
 function discover() {
     jQuery.ajax({
         type: 'POST',
         url: 'data_mining.php',
         data: {
-            selected_proto: $("#select_proto option:selected").text()
+            selected_proto: $("#select_proto option:selected").text(),
+            ip_input: $("#ip_input").val(),
+            community_input: $("#community_input").val(),
+            dig_level_input: $("#dig_level_input").val()
         },
         beforeSend: function(jqXHR, settings) {
             $("#notif").html("");
             $("svg").remove();
+            $(":input").prop('disabled', true);
             $("#discover_btn").button('loading');
-            $("#discover_btn").prop('disabled', true);
-            $("#select_proto").prop('disabled', true);
-            $("#select_proto").selectpicker('refresh');
-            $("#search_btn").prop('disabled', true);
         },
         success: function(data, textStatus, jqXHR) {
             $("#notif").html(data);
+            $(":input").prop('disabled', false);
             $("#discover_btn").button('reset');
-            $("#select_proto").prop('disabled', false);
-            $("#select_proto").selectpicker('refresh');
-            $("#search_btn").prop('disabled', false);
             rendering();
         },
         error: function(jqXHR, textStatus, errorThrown) {
