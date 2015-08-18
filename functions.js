@@ -28,18 +28,13 @@ function discover() {
         beforeSend: function(jqXHR, settings) {
             $("#notif").html("");
             $("svg").remove();
+            $(":input").prop('disabled', true);
             $("#discover_btn").button('loading');
-            $("#discover_btn").prop('disabled', true);
-            $("#select_proto").prop('disabled', true);
-            $("#select_proto").selectpicker('refresh');
-            $("#search_btn").prop('disabled', true);
         },
         success: function(data, textStatus, jqXHR) {
             $("#notif").html(data);
+            $(":input").prop('disabled', false);
             $("#discover_btn").button('reset');
-            $("#select_proto").prop('disabled', false);
-            $("#select_proto").selectpicker('refresh');
-            $("#search_btn").prop('disabled', false);
             rendering();
         },
         error: function(jqXHR, textStatus, errorThrown) {
