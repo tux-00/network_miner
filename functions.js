@@ -8,7 +8,12 @@ $(document).ready(function() {
 });
 
 $('#discover_btn').click(function() {
-    discover();
+    if ($("#ip_input").val() == '') {
+        $('#ip_input').popover('show');
+    } else {
+        $('#ip_input').popover('hide');
+        discover();
+    }
 });
 
 $('#search_btn').click(function() {
