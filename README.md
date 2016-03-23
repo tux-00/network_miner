@@ -10,12 +10,16 @@ Network Miner generates a network map by sending SNMP requests (LLDP/CDP/EDP).
 - [Wiki](#wiki)
 
 # Installation
+
+**Prerequisite**
+
 * LLDP, EDP or CDP need to be enabled on your SNMP devices.
 
 * You need a web server with the php snmp plugin/package enabled.
 
 * SNMP SysName need to be matching with a DNS record.
 
+**Installation**
 
 * Clone this repository into your sites location (e.g. /var/www/) :
 
