@@ -31,7 +31,7 @@ Network Miner generates a network map by sending SNMP requests (LLDP/CDP/EDP).
 
 `bower install`
 
-Check [bower.io](http://bower.io/) website for more informations about Bower.
+Refer to [bower.io](http://bower.io/) for informations about installation.
 
 * Run index.php in your web browser.
 
