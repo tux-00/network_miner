@@ -40,8 +40,8 @@ You can test Network Miner without the appropriate environment.
 
 To test Network Miner, you need first to copy the content of a json example data file (located in [test/data/](test/data/)) to your *data* directory.
 
-Once the file is copied you need to comment these lines to avoid the scan and the overwrite of the data on *snmp_data.json*:
-```
+Once the file is copied you need to comment these lines in *index.php* to avoid the scan and the overwrite of the data on *snmp_data.json*:
+```php
 recursive_search($FIRST_DEVICE, 1);
 
 file_put_contents('./data/snmp_data.json', json_encode(array('nodes' => $nodes,
