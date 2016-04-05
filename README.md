@@ -46,7 +46,7 @@ and run the image :
 You can change the port mapping with the *-p* paramater.
 
 # Test files
-You can test Network Miner without the appropriate environment.
+You can test the Network Miner rendering without the appropriate environment.
 
 To test Network Miner, you need first to overwrite *data/snmp_data.json* with the content of a test file located in [test/data/](test/data/).
 
