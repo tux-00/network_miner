@@ -2,7 +2,7 @@ FROM debian:jessie
 
 # Installations
 RUN apt-get update
-RUN apt-get install -y git nodejs-legacy npm nginx php5-fpm
+RUN apt-get install -y git nodejs-legacy npm nginx php5-fpm php5-snmp
 RUN npm install -g bower
 
 # Remove default files
