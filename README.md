@@ -48,7 +48,7 @@ You can change the port mapping with the *-p* paramater.
 # Test files
 You can test Network Miner without the appropriate environment.
 
-To test Network Miner, you need first to copy the content of a json example data file (located in [test/data/](test/data/)) to your *data* directory.
+To test Network Miner, you need first to overwrite *data/snmp_data.json* with the content of a test file located in [test/data/](test/data/).
 
 Once the file is copied you need to comment these lines in *index.php* to avoid the scan and the overwrite of the data on *snmp_data.json*:
 ```php
