@@ -35,6 +35,16 @@ Refer to [bower.io](http://bower.io/) for informations about installation.
 
 * Run index.php in your web browser.
 
+**Docker**
+
+To use the docker image just pull the repository :
+```docker pull tofu00/network_miner```
+
+and run the image :
+```docker run -d -it -p 80:80 tofu00/network_miner```
+
+You can change the port mapping with the *-p* paramater.
+
 # Test files
 You can test Network Miner without the appropriate environment.
 
