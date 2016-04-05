@@ -50,7 +50,7 @@ You can test the Network Miner rendering without the appropriate environment.
 
 To test Network Miner, you need first to overwrite *data/snmp_data.json* with the content of a test file located in [test/data/](test/data/).
 
-Now comment these lines in *index.php* to avoid the scan and the overwrite of *snmp_data.json*:
+Now comment these lines in *data_mining.php* to avoid the scan and the overwrite of *snmp_data.json*:
 ```php
 recursive_search($FIRST_DEVICE, 1);
 
