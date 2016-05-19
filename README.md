@@ -1,4 +1,8 @@
-# Network Miner
+Network Miner
+=============
+
+[![Code Climate](https://codeclimate.com/github/tux-00/network_miner/badges/gpa.svg)](https://codeclimate.com/github/tux-00/network_miner)
+
 Network Miner generates a network map by sending SNMP requests (LLDP/CDP/EDP).
 
 ![D3.js display](http://i.imgur.com/RkQj2EF.png)
